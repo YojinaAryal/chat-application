@@ -6,18 +6,23 @@
     <title>Chat app</title>
 </head>
 <body>
-    <h1>Chatting</h1>
-    <input type="text" id="message" placeholder="ENTER MESSAGE">
+    <h1>HEY! YOU CAN CHAT HERE....</h1>
+    <input type="text" id="message" placeholder="ENTER MESSAGE" >
    <button id="sendBtn" >Send</button>
+
+   <div id="messages"></div>
    
         <script src="/socket.io/socket.io.js"></script>
          <script>
         const socket=io();
         const sendBtn=document.getElementById('sendBtn'); 
         const messageInput=document.getElementById('message');
+        const allMessages=document.getElementById('messages');
 
         socket.on("message",message=>{
-            console.log(message)
+            const p=document.createElement('p'); 
+            p.innerText=message;
+            allMessages.appendChild(p);
         })
 
         sendBtn.addEventListener('click',e=>{
